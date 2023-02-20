@@ -1,30 +1,33 @@
 <!--/templates/register.html-->
-{% load bootstrap4 %} 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+{% load bootstrap4 %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 <body>
-     <div class="container">
-         <div class="row">
-         <div class="col-md-offset-3 col-md-6">
-         <form class="form-horizontal", action="{% url 'home' %}", method="post">
-         {% csrf_token %}
-         <span class="heading">РЕГИСТРАЦИЯ</span>
-         <div class="form-group">
-       
-         <li>{{form.username}}</li>
-         
-         </div>
-         <button type="submit" value="login" class="btn btn-default">ЗАРЕГИСТРИРОВАТЬСЯ</button>
-         <input type="hidden" name="next" value="{{ next }}" />
-         <p>
-         <p>
-         <a href="{% url 'login' %}">Войти</a>
-         </form>
-     </div>
-  </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <form class="form-horizontal"  method="post">
+                {% csrf_token %}
+                <span class="heading">РЕГИСТРАЦИЯ</span>
+                <div class="form-group">
+                    <ul>
+                        {% for field in form %}
+                        <label>{{field.name}}</label>
+                        <li>{{field}}</li>
+                        {{field.errors}}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button type="submit" value="login" class="btn btn-default">Зарегистрироваться</button>
+                <p>
+                <p>
+                    <a href="{% url 'login' %}">Войти</a>
+            </form>
+        </div>
+    </div>
 </body>
 
 
