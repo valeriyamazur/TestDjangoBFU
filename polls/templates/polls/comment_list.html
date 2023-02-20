@@ -1,0 +1,20 @@
+{% extends "polls/base_generic.html" %}
+
+{% block content %}
+    <h1>Все комментарии</h1>
+
+    {% if comment_list %}
+    <ul>
+
+      {% for comment in comment_list %}
+      <li><h2>
+        {{ comment.date_published }}, {{ comment.book}}, 
+        {{comment.comment}}
+      </li></h2>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <h2><p>Комментариев пока нет. Будьте первой!</p></h2>
+    {% endif %}
+{% endblock %}

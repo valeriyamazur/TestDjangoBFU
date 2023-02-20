@@ -1,0 +1,19 @@
+{% extends "polls/base_generic.html" %}
+<style>
+
+{% block content %}
+    <p><h1>Список книг</h1></p>
+
+    {% if book_list %}
+    
+      {% for book in book_list %}
+      <h2>
+      <li>
+        <a href="{{ book.get_absolute_url }}">{{ book.book_name }}</a>, {{book.author}}
+      </li>
+      </h2>
+      {% endfor %}
+    {% else %}
+      <p>В библиотека пока нет книг</p>
+    {% endif %}
+{% endblock %}
