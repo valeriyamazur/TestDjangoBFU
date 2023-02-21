@@ -29,28 +29,26 @@ def get_queryset(request):
 
 class GetComment(generic.DetailView):
     model = Comment
-    comment_form = CommentForm
     template_name = 'polls/comment_detail.html'
 
     def get(self, request, pk):
         name = Book.objects.get(id=pk)
         user = request.user
-        form = self.comment_form
         comments = Comment.objects.filter(book=pk)
         return render(request, self.template_name,
-                      {'comments': comments, 'user': user, "book_name": name, 'form': form})
+                      {'comments': comments, 'user': user, "book_name": name,})
 
 
 def add_comment(request, book, user):
-    print('_____________________________--')
-    if request.method == 'POST':
 
-        print(request.POST.get('comment'))
+    if request.method == 'POST':
+        print('_____________________________--')
         Comment.objects.create(
             comment=request.POST.get('comment'),
             book=Book.objects.get(id=book),
             user=User.objects.get(id=user),
         )
 
-        return redirect('home')
-
+        return redirect('book_detail', pk= book)
+    else:
+        print('Лошара')

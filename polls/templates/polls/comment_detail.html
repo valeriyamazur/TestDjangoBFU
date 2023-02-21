@@ -32,20 +32,17 @@
 <p><h2>Пока нет ни одного комментария. Будь первой!</p></h2>
 {% endif %}
 {% if request.user.is_authenticated %}
-{% if form %}
+
 <h2>Написать комментарий</h2>
-<form method="POST">
+<form action = "{%  url 'book' book_name.id user.id %}" method = "POST">
     {% csrf_token %}
 
     <input type="text" name="comment" placeholder="Оставить комментарий"/>
 
     <a href="{%  url 'book' book_name.id user.id %}">
-        <button type="button" class="btn btn-success"> Отправить</button>
+        <button type="submit" class="btn btn-success"> Отправить</button>
     </a>
 </form>
-{% else %}
-<h1></h1>
-{% endif %}
 {% endif %}
 
 {% endblock %}

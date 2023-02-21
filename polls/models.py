@@ -18,7 +18,7 @@ class Book(models.Model):
         """
         Returns the url to access a particular book instance.
         """
-        return reverse('book_', args=[str(self.id)])
+        return reverse('book_detail', args=[str(self.id)])
 
 
 class Comment(models.Model):

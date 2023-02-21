@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "polls/base_generic.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+{% if request.user.is_authenticated %}
+
+<h2>Написать комментарий</h2>
+<form method = "POST">
+    {% csrf_token %}
+
+    <input type="text" name="comment" placeholder="Оставить комментарий"/>
+
+    <a href="{%  url 'book' book_name.id user.id %}">
+        <button type="submit" class="btn btn-success"> Отправить</button>
+    </a>
+</form>
+{% endif %}
+
+{% endblock %}
+</body>
+</html>
