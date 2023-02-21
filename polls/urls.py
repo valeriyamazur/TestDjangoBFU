@@ -8,5 +8,6 @@ urlpatterns = [
     path('comments/', views.Comments.as_view(), name='comments'),
     path('search/', views.get_queryset, name='search'),
     path('add-comment/<str:book>/<str:user>/', views.add_comment, name='book'),
+    path('del-comment/<str:book>/<str:comment>/', views.del_comm, name='book_del_com'),
 
 ]

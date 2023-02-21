@@ -50,5 +50,9 @@ def add_comment(request, book, user):
         )
 
         return redirect('book_detail', pk= book)
-    else:
-        print('Лошара')
+
+
+
+def del_comm(request, book, comment):
+    Comment.objects.filter(id=comment).delete()
+    return redirect('book_detail', pk=book)

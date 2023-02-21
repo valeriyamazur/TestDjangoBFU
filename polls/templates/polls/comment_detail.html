@@ -8,7 +8,8 @@
 
 {% if comments%}
 {% for comment in comments %}
-<a name="comment-{{ comment.id }}"></a>
+
+
 <div class="row" id="{{ comment.id }}">
     <div class="col-md-{{ comment.get_col }} col-md-offset-{{ comment.get_offset }}">
         <div class="panel panel-default">
@@ -16,10 +17,20 @@
                 <h2>Пользователь: {{ comment.user.username }}</h2>
 
                 <h2><p>Дата публикации: {{ comment.date_published }}</p></h2>
+
             </div>
             <div class="panel-body">
                 <h2>
                     <div>{{ comment.comment }}</div>
+                    {% if comment.user.id == request.user.id %}
+                        <p></p>
+                        <a href="{%  url 'book_del_com' book_name.id comment.id %}">
+                            <button type="submit" class="btn btn-success"> Удалить</button>
+                        </a>
+                    </form>
+
+
+                    {% endif %}
                 </h2>
 
             </div>
@@ -34,7 +45,7 @@
 {% if request.user.is_authenticated %}
 
 <h2>Написать комментарий</h2>
-<form action = "{%  url 'book' book_name.id user.id %}" method = "POST">
+<form action="{%  url 'book' book_name.id user.id %}" method="POST">
     {% csrf_token %}
 
     <input type="text" name="comment" placeholder="Оставить комментарий"/>
